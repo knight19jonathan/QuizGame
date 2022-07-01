@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/jass.css">
+    <!-- <link rel="stylesheet" href="./assets/css/jass.css"> -->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <header>
         <h1>Welcome to the Quiz Game Show </h1>
@@ -21,49 +23,71 @@
                     <button id="realStart">START!</button>
                 </div>
                 <div id="stats">
-                    <h2>Wins:<span id="spanWins"></span></h2>
-                    <h2>Losses:<span id="spanLosses"></span></h2>
+                    <!-- <h2>Wins:<span id="spanWins"></span></h2>
+                    <h2>Losses:<span id="spanLosses"></span></h2> -->
+                    <form action="input" type="submit" id="nameLog">
+                        <input type="text" id="playerNamerF" placeholder="Your name here...">
+                        <input type="submit" id="submit" value="Submit">
+                    </form>
                     <h2>Timer: <span id="spanCounter">0</span> Seconds Left</h2>
-                    <h2>Yout Score: <span id="spanScore">_</span></h2>
-                
+                    <h2>Youty Score: <span id="spanScore">_</span></h2>
+
                 </div>
-            </section >
+            </section>
 
 
             <section id="gameMatt">
                 <!-- game itself quiz  -->
                 <!-- a tag with href to relative file path to ../assets/html/game.html  -->
-                <div id="questionBarStyle"><p>Answer This Question: <span id="questionBar"></span></p></div>
+                <div id="questionBarStyle">
+                    <p>Answer This Question: <span id="questionBar"></span></p>
+                </div>
 
                 <div id="answerContainer">
 
-                    <div class = "answerBox" id="boxA"><p>A:<span></span></p></div>
-                     
-                    <div class = "answerBox" id="boxB"><p>B:<span> </span></p></div>
-
-                    <div class = "answerBox" id="boxC"><p>C:<span></span></p></div>
-
-                    <div class = "answerBox" id="boxD"><p>D:<span></span></p></div>
-
+                    <button id="boxA">A</button>
+                    <!-- <p>A:<span></span></p> -->
+                    <button id="boxB">B</button>
+                    <!-- <p>B:<span> </span></p> -->
+                    <button id="boxC">C</button>
+                    <!-- <p>C:<span></span></p> -->
+                    <button id="boxD">D</button>
+                        <!-- <p>D:<span></span></p> -->
                 </div>
 
             </section>
 
         </div>
 
-    <aside id="scores">
-        <!-- high scores  -->
-        <h2>List of Honorable Contenders of the Past:</h2>
-        <ol id="rankedScores">
-
-        </ol>
-    </aside>
+        <aside id="scores">
+            <!-- high scores  -->
+            <h2>List of Honorable Contenders of the Past:</h2>
+            <div>
+                <ol id="rankedScores">
+                    <li>test</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+        </aside>
 
     </main>
-        <!-- CAN ALSO USE MULTIPLE HTML SIDES  -->
+    <!-- CAN ALSO USE MULTIPLE HTML SIDES  -->
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="./assets/js/script.js"></script>
+
+    <script src="./assets/js/script.js"></script>
 
 </body>
+
 </html>

@@ -6,7 +6,7 @@
 
 body {
   font-family: sans-serif;
-  background-color: #113323;
+  background-color: #3e554a;
 }
 
 h1 {
@@ -28,9 +28,15 @@ button {
     column-rule: black;
     border-radius: 5px;
     border : 2px solid black;
-    height: 10%;
     width: 100%;
 }
+#realStart {
+    height: 65px;
+}
+#nameLog {
+
+}
+
 body {
     
 } 
@@ -53,31 +59,46 @@ main {
 
 #questionBarStyle {
     display: flex;
-    width: 50%;
-    height: 30%;
+    width: 100%;
+    height: 100px;
     background-color: yellow;
+    font-size: x-large;
+    padding: 5px;
+
 }
 #answerContainer {
-    width: 50%;
+    width: 100%;
     display: flexbox;
+    font-size: larger;
 }
 .answerBox {
-    background-color: whitesmoke;
+    background-color: rgb(180, 177, 177);
     column-rule: black;
     border-radius: 5px;
     border : 2px solid black;
-    height: 90px;
+    height: 70px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.answerBox button.hover {
+    background-color: rgba(0, 0, 0, 0.474);
+    height: 40px;
+
 }
 #gameMatt {
     width: 100%;
     margin: 0 auto;
-    border: 5px solid red;
+    border: 55px solid rgb(151, 73, 73);
+    border-radius: 15px;
+    box-shadow: 65px bisque;
 }
 
 aside {
     display: flex;
-    width: 25%;
+    width: 30%;
     height: 50vh;
     background-color: salmon;
     justify-content: right;
@@ -88,3 +109,12 @@ aside h2 {
     color: rgb(24, 24, 24);
     text-decoration: underline;
 }
+#rankedScores {
+    margin-top: 100px;
+    margin-left: 0;
+    justify-content: left;
+    text-align: left;
+    align-items: center;
+    margin-right: 20px;
+}
+
