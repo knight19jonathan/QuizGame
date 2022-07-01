@@ -13,14 +13,10 @@ var submitScore = document.querySelector("#submit");
 var playerName = document.querySelector("#playerNamerF");
 var liPlayer = document.querySelector("#liPlayer");
 var liscore = document.querySelector("#liscore");
-// let userScore = { username: initValue, userScore: score }
 let user = { username: "", userScore: 0 };
 var resetbtn = document.querySelector("#reset");
-
-
 var scoreDisplay = document.querySelector("#spanScore")
 var highscoreList = document.getElementById("rankedScores");
-
 var hideStart = document.querySelector("#welStart");
 var answerGoodBad = document.querySelector("#gameMatt");
 var answerBoxArea = document.querySelector("#answerContainer");
@@ -28,23 +24,17 @@ var answerContaninerBox = document.querySelector(".answerBox");
 var highscore = document.createElement("li");
 var answer;
 var currentQuestion = 0;
-var timeLeft = 15;
+var timeLeft = 25;
 var timer;
 timeLeftSpan.textContent = timeLeft;
-
 var score = 0;
 scoreDisplay.textContent = score;
-
-// var storedName = localStorage.getItem("winsR");
-// winsSpan.textContent = storedWins;
-// var storedLosses = localStorage.getItem("lossesR");
-// lossesSpan.textContent = storedLosses;
 var isPlaying = false;
 var gamerOver = false;
 
-// answers are either asnwers[0] = A, answers[1] = b, answers[2] = C, answers[3] = D
 
-let questions = [ // all questions all answers all possible answers
+// QUESTION ARRAY 
+let questions = [ 
     {
         question: "What is the most popular sport in film making?",
         choiceA: "Baseball",
@@ -180,17 +170,7 @@ let questions = [ // all questions all answers all possible answers
     }
 ];
 
-const endQuestion = questions.length - 1;
-// console.log(questions[0].correctanswer);
-
-// Start the game when the Start button is clicked. 
-
-//scoring answer
-
-// localStorage.setItem("playerName", JSON.stringify(playerName.value));
-// localStorage.setItem("score", JSON.stringify(score));
-
-
+//LOAD QUESTION AND ANSWER ARRAY TO THE GAME SCREEN 
 
 function loadQuestion() {
     questionBox.textContent = questions[currentQuestion].question;
@@ -199,35 +179,39 @@ function loadQuestion() {
     answerBoxC.textContent = questions[currentQuestion].choiceC;
     answerBoxD.textContent = questions[currentQuestion].choiceD;
 }
-
+// CHECKS TO SEE IF THE ANSWER IS CORRECT AND ADVANCES TO THE NEXT QUESTION ALSO ENDS THE GAME IF THE TIMER ELAPSES // LOOKED AT IMPLEMENTING A KILL COMMAND FOR PLAYERS FINISHING FASTER THAN TIMR BUT RAN OUT OF TIME
 
 function checkAnswer(answer) {
-    console.log(answer);
-    console.log(questions[currentQuestion-1].correctanswer);
+    // console.log(answer);
+    // console.log(currentQuestion);
+     
     if (answer === questions[currentQuestion-1].correctanswer) {
         // console.log(currentQuestion)
         score++;
         scoreDisplay.textContent = score;
-        console.log("Youddy");
         answerCorrect();
         loadQuestion;
         
     } else {
-        timeLeft--;
+        timeLeft--;  // DELIBERATE PUNISHMENT FOR THE PLAYER NOT ANSWERING THE QUESTION CORRECTLY 
         answerWrong();
         loadQuestion();
     }
+
     if (timeLeft < 1) {
         timeUp();
         clearQuestion();
-    } else if(currentQuestion === [14]) {
+
+    } else if(currentQuestion === [15]) {
         timeUp();
         clearQuestion();
     
     } else {
         loadQuestion();
     }
+    
 }
+// CLEARS THE ANSWERED QUESTON FROM THE GAME SCREEN
 
 function clearQuestion() {
     questionBox.textContent = "";
@@ -237,15 +221,18 @@ function clearQuestion() {
     answerBoxD.textContent = "";
 }
 
+//RECORDS SCORE TO CONSOLE LOG AND PROMPTS ALERT WILL STOP GAME TIMER WHILE ALERT IS ACTIVE ALSO WILL MAKE THE TEXT FORM APPEAR FOR THE PLAYER TO ENTER THEIR INITALS OR NAME INTO
 function logScore() {
     console.log(score);
     window.alert("You got " + score + " out of " + questions.length + " correct! Please enter your name to submit your score.");
     nameLog.style.display = "block";
 }
 
+// WHEN THE INTER IS UP THE FUNCTION ENDS THE ACTIVITY ADN MOVES THE GAME TO THE SCORING STAGE
 function timeUp() {
     clearInterval(timer);
     clearQuestion();
+    
     answerBoxArea.textContent = "Time is up!";
     answerBoxArea.style.backgroundColor = "red";
     answerBoxArea.style.color = "white";
@@ -253,6 +240,7 @@ function timeUp() {
     logScore();
 };
 
+// ATTEMPTED TO ADD INTERACTIVE ANSWERS BUT THEY ARE NOT WORKING 
 function answerCorrect() {
     answerGoodBad.setAttribute("background-color", "green");
 };
@@ -261,20 +249,22 @@ function answerWrong() {
     answerGoodBad.setAttribute("background-color", "red");
 };
 
-
+// TIME COUNTER INITIATED WHEN FUNCTION IS CALLED
 function renderCounter() {
+    timeLeft--;
+    timeLeftSpan.textContent = timeLeft;
     if (timeLeft === 0) {
         clearInterval(timer);
         clearQuestion();
         timeUp();
         isPlaying = false;
         gamerOver = true;
-        
-        
+               
     }
-    timeLeft--;
-    timeLeftSpan.textContent = timeLeft;
+    
 };
+
+//HIDES THE FORM BOX TO ENTER YOUR NAME ON LOAD ALSO GETS THE PREVIOUS NAME AND SCORE STORED IN LOCAL STORAGE AND PUTS IT IN THE SCORE BOX LABELED HONORABLE CONTENDER OF THE PAST, WHEN YOU FINISH YOU CAN COMPARE YOUR SCORE TO THE LAST ENTRY
 
 function init() {
     
@@ -289,21 +279,11 @@ init(); {
    highscoreList.appendChild(li);
   
 };
-//      liPlayer.textContent = JSON.parse(localStorage.getItem("playerName"));
-//      if (liPlayer == null) {
-//         liPlayer.textContent = "Player";
-//     } 
-//      }
-//      liscore.textContent = JSON.parse(localStorage.getItem("score"))
-//      if (liscore == null) {
-//         liscore.textContent = "0";
-//     
 
 
+//EVENT LISTENER ON START BUTTON TO BEGIN GAME, CALL COUNTER FUNCTION, SET INITAL TIME INTERVAL SET INTERVAL OF TIMER HIDES THE START BUTTON SO THE PLAYER CANT RESTART THE GAME DURING THE GAME. 
 
 start.addEventListener("click", function () {
-    //EDGE CASE: user resets the game by clicking start while game is running
-    //Load first question
     start.style.display = "none"
     renderCounter();
     timeLeft = 25;
@@ -311,23 +291,18 @@ start.addEventListener("click", function () {
     if (isPlaying) {
         return;
     }
-    // currentQuestion = questions[Math.floor(Math.random() * questions.length)];
-    //Pick a random question to start with
     loadQuestion();
-    //Display question  
-    // answerGoodBad.setAttribute("background-color", "gray");
 });
 
+//IDENTIFIES THE ANSWER THE PLAYER CLICKED AND MOVES TO THE NEXT QUESTION 
 answerBoxArea.addEventListener("click", function (event) {
     console.log(event.target.textContent);
     currentQuestion++;
     checkAnswer(event.target.textContent);
-    // answer = event.target;
-    // checkAnswer(); 
-    
+   
 });
 
-
+// WHEN THE PLAYER SUBMITS THEIR NAME AT THE END OF THE GAME THIS PREVENT PAGE RELOAD FROM A FORM SUBMIT, CONSOLE LOGS THE NAME AND SCORE STORES THAT NAME AND SCORE IN THE LOCAL STORAGE, HIDES THE NAME SUBMIT BOX SO THEY CANT SPAM THE BUTTON GETS THE INFORMATION STORED INTO LOCAL STORAGE AND CALLS IT TO THE SCORE BOARD TO COMPARE WITH THE PLAYERS LAST RUN
 
 submitScore.addEventListener("click", function (event) {
     event.preventDefault();
@@ -347,28 +322,4 @@ submitScore.addEventListener("click", function (event) {
     var li = document.createElement("li");
     li.appendChild(document.createTextNode("Player: " + user.username + " Score: " + user.userScore));
     highscoreList.appendChild(li);
-    // resetbtn.style.display = "visible";
-
-
 });
-
-// resetbtn.addEventListener("click", function () {
-//     event.preventDefault();
-//     window.location.reload();
-// });
-
-// function to shoot out to array 
-
- // JSON.stringify(playerName.value);
-    // JSON.stringify(score);
-    // // highscore.textContent = playerName.value + ": " + score;
-    // // console.log(highscore);
-    
-    // // console.log(highscore);
-    // // document.body.ol.appendChild(highscore);
-
-
-
-        // liPlayer = user.username;
-    // liscore = user.userScore;
-    // document.createElement("li text=");

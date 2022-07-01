@@ -5,23 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="./assets/css/jass.css"> -->
+    <title>The Quiz Game</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="./images/game-show-entertainment-10-512.png" type="image/x-icon">
 </head>
 
 <body>
     <header>
         <h1>Welcome to the Quiz Game Show </h1>
     </header>
-    <!-- hide the start game button at the start of the game!  -->
+
     <main>
+
         <div class="gameArea">
+
             <section id="welStart">
+
                 <!-- welcome and start button  COULD USE DISPLAY HIDDEN AND DISPLAY VISIBLE  -->
+
                 <div id="startBtn">
+
                     <button id="realStart">START!</button>
+
                 </div>
+
                 <div id="stats">
                     <!-- <h2>Wins:<span id="spanWins"></span></h2>
                     <h2>Losses:<span id="spanLosses"></span></h2> -->
@@ -30,15 +37,17 @@
                         <input type="submit" id="submit" value="Submit">
                     </form>
                     <h2>Timer: <span id="spanCounter">0</span> Seconds Left</h2>
-                    <h2>Youty Score: <span id="spanScore">_</span></h2>
+                    <h2>Your Score: <span id="spanScore">_</span></h2>
 
                 </div>
+
             </section>
 
 
             <section id="gameMatt">
                 <!-- game itself quiz  -->
                 <!-- a tag with href to relative file path to ../assets/html/game.html  -->
+
                 <div id="questionBarStyle">
                     <p>Answer This Question: <span id="questionBar"></span></p>
                 </div>
@@ -60,18 +69,22 @@
         </div>
 
         <aside id="scores">
+
             <!-- high scores  -->
-            <h2>List of Honorable Contenders of the Past:</h2>
+            <h2>Honorable Contender of the Past:</h2>
+
             <div>
-                <ol id="rankedScores">
-                </ol>
+                <ul id="rankedScores">
+                </ul>
             </div>
+            
         </aside>
 
     </main>
-    <!-- CAN ALSO USE MULTIPLE HTML SIDES  -->
+    <!-- <button id="reset">RESET</button>  brakes game -->
 
 
+    <!-- JS link -->
     <script src="./assets/js/script.js"></script>
 
 </body>

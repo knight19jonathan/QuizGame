@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  
 }
 
 body {
@@ -28,12 +29,12 @@ button {
     border-radius: 5px;
     border : 2px solid black;
     width: 100%;
+    font-size: large;
+    font-weight: 700;
 }
 #realStart {
     height: 65px;
-}
-#nameLog {
-
+    box-shadow: 10px 3px 10px 10px rgba(0, 0, 0, 0.589);
 }
 
 main {
@@ -43,7 +44,7 @@ main {
     width: 100%;
 }
 
- .gameArea {
+.gameArea {
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -51,15 +52,21 @@ main {
   margin: 0 auto;
   width: 60%;
   background:linear-gradient(90deg, rgb(73, 82, 107), #113323)
+  
 } 
+ul {
+    list-style-type: none;
+}
 
 #questionBarStyle {
     display: flex;
     width: 100%;
-    height: 100px;
-    background-color: yellow;
+    height: 30vh;
+    background-color: rgb(238, 238, 80);
     font-size: large;
     padding: 5px;
+    box-shadow: 10px 3px 10px 10px rgba(0, 0, 0, 0.589);    
+    font-weight: 700;
 
 }
 #answerContainer {
@@ -79,9 +86,11 @@ main {
 }
 
 
-.answerBox button.hover {
-    background-color: rgba(0, 0, 0, 0.474);
-    height: 40px;
+
+.answerContainer button {
+    background-color: rgba(0, 0, 0, 0.137);
+    height: 12vh;
+    box-shadow: 5px 3px 15px 12px rgba(0, 0, 0, 0.589);
 
 }
 #gameMatt {
@@ -90,28 +99,37 @@ main {
     border: 55px solid rgb(151, 73, 73);
     border-radius: 15px;
     box-shadow: 65px bisque;
+    box-shadow: 10px 3px 10px 10px rgba(0, 0, 0, 0.589);
+
 }
 
 aside {
     display: flex;
-    width: 30%;
+    flex-direction: column;
+    width: 33%;
     height: 50vh;
     background:linear-gradient(90deg, salmon, whitesmoke);
     justify-content: right;
     text-align: center;
+    box-shadow: 1px 3px 10px 10px rgba(0, 0, 0, 0.589);
 }
 aside h2 {
+    display: flex;
     margin: 0 auto;
+    margin-right: 1%;
     color: rgb(24, 24, 24);
     text-decoration: underline;
 }
 #rankedScores {
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 130px;
     margin-left: 0;
     justify-content: left;
     text-align: left;
-    align-items: center;
+    align-items: left;
     margin-right: 50px;
+    font-size: x-large;
 }
 #resetbtn {
     height: 300px;
