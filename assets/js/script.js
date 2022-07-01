@@ -11,6 +11,8 @@ var answerBoxC = document.querySelector("#boxC");
 var answerBoxD = document.querySelector("#boxD");
 var submitScore = document.querySelector("#submit");
 var playerName = document.querySelector("#playerNamerF");
+var liPlayer = document.querySelector("#liPlayer");
+var liScore = document.querySelector("#liScore");
 
 
 var scoreDisplay = document.querySelector("#spanScore")
@@ -19,7 +21,7 @@ var hideStart = document.querySelector("#welStart");
 var answerGoodBad = document.querySelector("#gameMatt");
 var answerBoxArea = document.querySelector("#answerContainer");
 var answerContaninerBox = document.querySelector(".answerBox");
-
+var highscore = document.createElement("li");
 var answer;
 var currentQuestion = 0;
 var timeLeft = 15;
@@ -163,7 +165,16 @@ let questions = [ // all questions all answers all possible answers
         choiceD: "When some get's the number 7 at the taco truck.",
         correctanswer: "When the Earth's magnetosphere deflects away solar wind"
 
-    }];
+    },
+    {
+        question: "What is the most common type of supernova?",
+        choiceA: "Supernova C",
+        choiceB: "Supernova B",
+        choiceC: "Supernova A",
+        choiceD: "Supernova X",
+        correctanswer: "Supernova C"
+    }
+];
 
 const endQuestion = questions.length - 1;
 // console.log(questions[0].correctanswer);
@@ -199,6 +210,10 @@ function checkAnswer(answer) {
     if (timeLeft < 1) {
         timeUp();
         clearQuestion();
+    } else if(currentQuestion === [14]) {
+        timeUp();
+        clearQuestion();
+    
     } else {
         loadQuestion();
     }
@@ -257,6 +272,9 @@ function init() {
 
 init(); {
     nameLog.style.display = "none";
+    liPlayer.textContent = localStorage.getItem("playerName");
+    liscore.textContent = localStorage.getItem("score");
+
 }
 
 
@@ -295,5 +313,11 @@ submitScore.addEventListener("click", function (event) {
     score = localStorage.setItem("score", score);
     window.alert("Your score has been submitted!");
     nameLog.style.display = "none";
+    // JSON.stringify(playerName.value);
+    // JSON.stringify(score);
+    // // highscore.textContent = playerName.value + ": " + score;
+    // // console.log(highscore);
     
+    // // console.log(highscore);
+    // // document.body.ol.appendChild(highscore);
 });
