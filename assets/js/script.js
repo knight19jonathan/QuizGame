@@ -12,10 +12,14 @@ var answerBoxD = document.querySelector("#boxD");
 var submitScore = document.querySelector("#submit");
 var playerName = document.querySelector("#playerNamerF");
 var liPlayer = document.querySelector("#liPlayer");
-var liScore = document.querySelector("#liScore");
+var liscore = document.querySelector("#liscore");
+// let userScore = { username: initValue, userScore: score }
+let user = { username: "", userScore: 0 };
+var resetbtn = document.querySelector("#reset");
 
 
 var scoreDisplay = document.querySelector("#spanScore")
+var highscoreList = document.getElementById("rankedScores");
 
 var hideStart = document.querySelector("#welStart");
 var answerGoodBad = document.querySelector("#gameMatt");
@@ -182,6 +186,12 @@ const endQuestion = questions.length - 1;
 // Start the game when the Start button is clicked. 
 
 //scoring answer
+
+// localStorage.setItem("playerName", JSON.stringify(playerName.value));
+// localStorage.setItem("score", JSON.stringify(score));
+
+
+
 function loadQuestion() {
     questionBox.textContent = questions[currentQuestion].question;
     answerBoxA.textContent = questions[currentQuestion].choiceA;
@@ -271,11 +281,23 @@ function init() {
 };
 
 init(); {
-    nameLog.style.display = "none";
-    liPlayer.textContent = localStorage.getItem("playerName");
-    liscore.textContent = localStorage.getItem("score");
-
-}
+   nameLog.style.display = "none";
+   user.username = JSON.parse(window.localStorage.getItem("playerName"));
+   user.userScore = JSON.parse(window.localStorage.getItem("score"));
+   var li = document.createElement("li");
+   li.appendChild(document.createTextNode("Player: " + user.username + " Score: " + user.userScore));
+   highscoreList.appendChild(li);
+  
+};
+//      liPlayer.textContent = JSON.parse(localStorage.getItem("playerName"));
+//      if (liPlayer == null) {
+//         liPlayer.textContent = "Player";
+//     } 
+//      }
+//      liscore.textContent = JSON.parse(localStorage.getItem("score"))
+//      if (liscore == null) {
+//         liscore.textContent = "0";
+//     
 
 
 
@@ -292,7 +314,7 @@ start.addEventListener("click", function () {
     // currentQuestion = questions[Math.floor(Math.random() * questions.length)];
     //Pick a random question to start with
     loadQuestion();
-    //Display question
+    //Display question  
     // answerGoodBad.setAttribute("background-color", "gray");
 });
 
@@ -305,19 +327,48 @@ answerBoxArea.addEventListener("click", function (event) {
     
 });
 
+
+
 submitScore.addEventListener("click", function (event) {
     event.preventDefault();
     console.log(playerName.value);
-    playerName.value = localStorage.setItem("playerName", playerName.value);
+    playerName.value = localStorage.setItem("playerName", JSON.stringify(playerName.value));
     console.log(score);
-    score = localStorage.setItem("score", score);
+    score = localStorage.setItem("score", JSON.stringify(score));
     window.alert("Your score has been submitted!");
     nameLog.style.display = "none";
-    // JSON.stringify(playerName.value);
+    console.log(playerName.value);
+    console.log(score);
+    user.username = JSON.parse(window.localStorage.getItem("playerName"));
+    user.userScore = JSON.parse(window.localStorage.getItem("score"));
+    console.log(user.username);
+    console.log(user.userScore);
+    console.log(user);
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode("Player: " + user.username + " Score: " + user.userScore));
+    highscoreList.appendChild(li);
+    // resetbtn.style.display = "visible";
+
+
+});
+
+// resetbtn.addEventListener("click", function () {
+//     event.preventDefault();
+//     window.location.reload();
+// });
+
+// function to shoot out to array 
+
+ // JSON.stringify(playerName.value);
     // JSON.stringify(score);
     // // highscore.textContent = playerName.value + ": " + score;
     // // console.log(highscore);
     
     // // console.log(highscore);
     // // document.body.ol.appendChild(highscore);
-});
+
+
+
+        // liPlayer = user.username;
+    // liscore = user.userScore;
+    // document.createElement("li text=");
